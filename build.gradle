@@ -1,0 +1,80 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+//	id 'com.google.cloud.tools.jib' version '3.1.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'com.kakaopay'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	compileOnly 'org.projectlombok:lombok'
+
+	runtimeOnly 'dev.miku:r2dbc-mysql:0.8.2.RELEASE'
+
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+
+	implementation group: 'jakarta.persistence', name: 'jakarta.persistence-api', version: '2.2.3'
+
+}
+
+test {
+	useJUnitPlatform()
+}
+
+clean {
+	delete file('src/main/generated')
+}
+
+
+/** Jib를 이용한 Docker Image 생성 및 Repository 등록 ***/
+/*
+ext {
+	set('DOCKER_REPOSITORY', '{docker repository}')
+	set('BUILD_NAME', '{build name}')
+	set('BUILD_VERSION', '{build version}')
+	set('USER_NAME', '{docker repository user name}')
+	set('PASSWORD', '{docker repository user password}')
+}
+
+jib {
+	from {
+		image = "${DOCKER_REPOSITORY}/{Image Name}"
+		auth {
+			username = "${USER_NAME}"
+			password = "${PASSWORD}"
+		}
+	}
+	to {
+		image = "${DOCKER_REPOSITORY}/${BUILD_NAME}:${BUILD_VERSION}"
+		auth {
+			username = "${USER_NAME}"
+			password = "${PASSWORD}"
+		}
+		tags = ['latest']
+	}
+	container {
+		appRoot = "{container path}"
+		creationTime = "USE_CURRENT_TIMESTAMP"
+	}
+}*/
