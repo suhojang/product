@@ -22,3 +22,24 @@
     + 다만 현재 개발 한 R2DBC Repository 에서 Native SQL Query 를 사용하는 방법은 이질감을 느끼게 함.
       + Query DSL과 연계하여 처리 할 수 있는 방법이 있음. 
       + 하지만 이 프로젝트는 과제 이므로 QueryDSL 은 과한 느낌이 들어 추가하지 않음. 
+
+#### API 목록
+  + 전체 투자상품 조회
+    > curl --location --request GET 'http://localhost:8080/api/products' \
+      --header 'Content-Type: application/json' \
+      --header 'X-USER-ID: 1'
+     
+  + 투자하기
+    > curl --location --request POST 'http://localhost:8080/api/users/products' \
+     --header 'Content-Type: application/json' \
+     --header 'X-USER-ID: 1' \
+     --data-raw '{
+     "product_id" : "1"
+     ,"my_investing_amount": "100000"
+     }'
+    > 
+
+  + 나의 투자상품 조회
+    > curl --location --request GET 'http://localhost:8080/api/users/products' \
+    --header 'Content-Type: application/json' \
+    --header 'X-USER-ID: 1'
