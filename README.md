@@ -6,15 +6,13 @@
        
 #### Dependency
   + WebFlux : reactive-stack web framework이며 non-blocking에 reactive stream을 지원
-    + 장점 : 고성능, Spring 과 완벽한 통합, netty 지원, 비동기 non-blocking 메세지 처리
-    + 단점 : 오류처리가 다소 복잡하다. Back Pressure 기능 없음
-      
+    + 고성능, Spring 과 완벽한 통합, netty 지원, 비동기 non-blocking 메세지 처리
 
   + R2DBC : SQL 데이터베이스를 위한 리액티브 API
     + WebFlux 함께 Non-Blocking 을 위해 추가 
-    
 
   + Kubernetes 및 Docker Swarm 에서의 배포 전략을 위한 jib
+    + CI/CD 를 이용하여 test, build, deploy stage 전략 필요
 
 #### ISSUE
   + R2DBC
